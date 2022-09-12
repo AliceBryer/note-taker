@@ -5,6 +5,7 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const uniqid = require("uniqid");
+const router = require("express").Router;
 
 app.listen(process.env.PORT || port, () => {
   console.log("app is listening at localhost");
@@ -13,16 +14,6 @@ app.listen(process.env.PORT || port, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
-// html routes (get)
-
-app.get("/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/notes.html"));
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
-});
 
 // post routes
 
